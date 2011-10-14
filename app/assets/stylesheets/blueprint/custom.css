@@ -1,0 +1,27 @@
+/* Round corners */
+/* This does not work in IE */
+.round {
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius:         10px;
+}
+
+
+footer {
+  text-align: center;
+  margin-top: 10px;
+  width: 710px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+footer nav{
+	float: none;
+}
+
+footer li{
+	list-style: none;
+	float: right;
+	margin: 10px;
+}
