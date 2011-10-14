@@ -1,11 +1,29 @@
 SampleApp::Application.routes.draw do
-  get "pages/home"
+  get "users/new"
 
-  get "pages/contact"
+  root :to => 'pages#home'
+  
+  # get "pages/home"
 
-  get "pages/about"
+  #  tHe below commented code is no longer required as we have teh corresponding match statements.
+  # get "pages/contact"
+  # get "pages/about"
+  # get "pages/help"
+  
+  # ---------------------------------------- 
+  # ---------- IMPORTANT -------------------
+  # ----------------------------------------
+  #  match ’/about’ also automatically creates named routes for use in the controllers and views:
+  # about_path => '/about'
+  # about_url  => 'http://localhost:3000/about'
+  
+  # -----------------------------------------
+  
+  match '/about',  :to => 'pages#about'
+  match '/contact', :to => 'pages#contact'
+  match '/help', :to => 'pages#help' 
 
-  get "pages/help"
+  match '/signup', :to => 'users#new'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

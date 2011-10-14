@@ -5,12 +5,33 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
-  <%= stylesheet_link_tag 'blueprint/print', :print => 'print' %>
+  <%= render "/layouts/stylesheets" %>
 </head>
 <body>
-
-<%= yield %>
-
+	<div class = 'wrapper container'>
+		<header>
+			Header Text goes here
+		  <% logo = image_tag("logo.png", :alt => "Sample App", :class => "round") %>
+			<%= link_to logo, root_path %>
+			<nav class = 'round'>
+				<ul>
+					<li><%= link_to "Home", root_path %></li>
+					<li><%= link_to "Help", help_path %></li>
+					<li><%= link_to "Sign In", "#" %></li>
+				</ul>
+			</nav>
+		</header>
+		<section class = 'round'>
+			<%= yield %>
+		</section>
+		<footer class = 'round'>
+			<nav>
+				<ul>
+					<li><%= link_to "About", about_path, :class => 'footer_link' %></li>
+					<li><%= link_to "Contact", contact_path, :class => 'footer_link' %></li>
+				</ul>
+			</nav>
+		</footer>
+	</div>
 </body>
 </html>
