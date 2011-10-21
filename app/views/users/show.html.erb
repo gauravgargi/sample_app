@@ -1,1 +1,10 @@
+<%= gravatar_for @user %>
+
 <%= @user.name %> , <%= @user.email %>
+
+<div class="sidebar round">
+	<%= @user.name %>
+	<%= link_to user_path(@user), @user %>
+	<!-- Above, @user and user_path(@user) is the same incase of link path. So
+			link_to user_path(@user), user_path(@user)  is the same thing  -->
+</div>
