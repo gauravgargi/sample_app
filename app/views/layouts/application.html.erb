@@ -4,6 +4,7 @@
   <title><%= title %></title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tags %>
   <%= render "/layouts/stylesheets" %>
 </head>
@@ -16,14 +17,26 @@
 			<nav class = 'round'>
 				<ul>
 					<li><%= link_to "Home", root_path %></li>
+					<% if signed_in? %>
+						<li><%= link_to "Users", users_path %></li>
+						<li><%= link_to "Profile", current_user %></li>
+						<li><%= link_to "Settings", edit_user_path(current_user) %></li>
+					<% end %>
 					<li><%= link_to "Help", help_path %></li>
-					<li><%= link_to "Sign In", "#" %></li>
+					<% if signed_in? %>
+						<li><%= link_to "Sign Out", signout_path, :method => :delete %></li>
+					<% else %>
+						<li><%= link_to "Sign In", signin_path %></li>
+					<% end %>
 				</ul>
 			</nav>
 		</header>
 		<section class = 'round'>
+		<!-- This flash accepts :notice, :success, :error key. -->
+		<!-- Based on the key, we have styles in the css. Yellow/Green/Red => :notice,:success,:error -->
 			<% flash.each do |key,value| %>
-				<div class = "flash <%= key %>"><%= value %></div>
+				<!-- <div class = "flash <%= key %>"><%= value %></div> -->
+				<%= content_tag(:div, value, :class => "flash #{key}") %>
 			<% end %>
 			<%= yield %>
 		</section>

@@ -15,6 +15,26 @@ describe UsersController do
   		get 'new'
   		response.should have_selector("title", :content => 'Sign Up')
   	end  
+
+    it "should have a name field" do
+      get 'new'
+      response.should have_selector("input[name='user[name]'][type='text']")
+    end
+
+    it "should have an email field" do
+      get 'new'
+      response.should have_selector("input[name='user[email]'][type='text']")
+    end
+
+    it "should have a password field" do
+      get 'new'
+      response.should have_selector("input[name='user[password]'][type='password']")
+    end
+
+    it "should have a Confirm Password field" do
+      get 'new'
+      response.should have_selector("input[name='user[password_confirmation]'][type='password']")
+    end
   end
 
   describe "GET 'show'" do
@@ -60,7 +80,7 @@ describe UsersController do
 
     describe "success" do
       before( :each ) do
-        @attr = { :name=>"Gaurav",:email => "abc@abc.com", :password => "123456", :password_confirmation => "123456"}
+        @attr = { :name=>"Gaurav",:email => "abcd@abc.com", :password => "123456", :password_confirmation => "123456"}
       end
 
       it "should create a user" do

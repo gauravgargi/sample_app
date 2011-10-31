@@ -53,7 +53,14 @@ class User < ActiveRecord::Base
     return user if user.has_password?(submitted_password)
     return nil
   end
-
+ 
+	# Ch 9. RoR Tut 
+ 	def self.authenticate_with_salt(id, cookie_salt)
+    user = find_by_id(id)
+    # (user && user.salt == cookie_salt) ? user : nil
+    return nil  if user.nil?
+	  return user if user.salt == cookie_salt
+  end
   # def self.authenticate(email, submitted_password)
   #   user = find_by_email(email)
   #   if user.nil?
